@@ -13,6 +13,13 @@ function cap(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
+function safeClick(id) {
+	var el = document.getElementById(id);
+	if(el!=null){
+		el.click();
+	}
+}
+
 function fillComment() {
 	var commentInput = document.getElementsByName('OVERALL_EXPERIENCE_COMMENT')[0];
 	comment = cap(randomItem(sellerAdjs)) + " seller, " + randomItem(priceAdjs) + " price, " + randomItem(qualityAdjs) + " quality, " + randomItem(shippingAdjs) + " shipping";
@@ -36,13 +43,12 @@ function autoFeedback() {
 	var htmlstr = document.body.innerHTML;
 	var UUID = idRe.exec(htmlstr)[0];
 	console.log(UUID);
-
-	document.getElementById("ON_TIME_DELIVERY-INPUT-"+UUID+"-2").click();
-	document.getElementById("OVERALL_EXPERIENCE-INPUT-"+UUID+"-POSITIVE").click();
-	document.getElementById("DSR_ITEM_AS_DESCRIBED-INPUT-"+UUID+"-5").click();
-	document.getElementById("DSR_SHIPPING_TIME-INPUT-"+UUID+"-5").click();
-	document.getElementById("DSR_COMMUNICATION-INPUT-"+UUID+"-5").click();
-
+	safeClick("ON_TIME_DELIVERY-INPUT-"+UUID+"-2");
+	safeClick("OVERALL_EXPERIENCE-INPUT-"+UUID+"-POSITIVE");
+	safeClick("DSR_ITEM_AS_DESCRIBED-INPUT-"+UUID+"-5");
+	safeClick("DSR_SHIPPING_TIME-INPUT-"+UUID+"-5");
+	safeClick("DSR_COMMUNICATION-INPUT-"+UUID+"-5"); 
+	safeClick("DSR_SHIPPING_CHARGES-INPUT-"+UUID+"-5");
 	fillComment();
 }
 
